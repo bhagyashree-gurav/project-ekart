@@ -14,8 +14,7 @@ pipeline {
         stage('git checkout') {
             steps {
                 git branch: 'main', credentialsId: 'github-creds-id', url: 'https://github.com/bhagyashree-gurav/project-ekart.git'
-
-            }
+             }
         }
 
         stage('compile') {
@@ -70,13 +69,12 @@ pipeline {
                     }
             }
         }
-       }
+       
         stage('Push image to Hub'){
             steps{
                 script{
-                    withCredentials([usernamePassword(credentialsId: 'dockerhub-creds', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) 
-                    {
-    sh 'echo "$DOCKER_PASSWORD" | docker login -u "bhagyashree095" --password-stdin'
+                    withCredentials([usernamePassword(credentialsId: 'dockerhub-creds', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
+                 sh 'echo "$DOCKER_PASSWORD" | docker login -u "bhagyashree095" --password-stdin' }
                 }
             }
         }
