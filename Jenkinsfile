@@ -71,8 +71,6 @@ pipeline {
             }
         }
        }
-
-
         stage('Push image to Hub'){
             steps{
                 script{
